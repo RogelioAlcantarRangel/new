@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Infinity</title>  <!-- Unified Title -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ---  Global Styles (from Colores.html, InovacionCosmica.html, and merged styles) --- */
+
+        :root {
+            --primary: #7f5af0;
+            --secondary: #2cb67d;
+            --dark: #16161a;
+            --text: #fffffe;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* --- Particles and Background (from Colores.html and InovacionCosmica.html) ---*/
+        #quantumField { /*  Use Quantum Field as the main background */
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /*  Behind everything */
+        }
+
+        /* --- Shared Container Styles --- */
+        .container {
+            position: relative; /*  For layering above particles */
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex; /*  For flexible layout */
+            flex-direction: column;  /* Stack content vertically */
+            min-height: 100vh; /* Ensure full viewport height */
+        }
+      .section-container{
+          position: relative;
+          z-index:2;
+          margin: 0 auto;
+          padding:2rem;
+
+      }
+
+        /* --- Hero Section (from InovacionCosmica.html) --- */
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center content horizontally */
+            text-align: center;    /* Center text within the hero */
+            padding-top: 5rem;     /* Add some top padding */
+            padding-bottom:3rem;
+        }
+
+        .hero-content {
+            max-width: 800px; /*  Give it some breathing room */
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 4rem; /*  Adjust as needed */
+            margin-bottom: 1rem;
+            text-align: center; /* Center the gradient text */
+        }
+
+        .typewriter {
+            border-right: 3px solid var(--primary);
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 2rem;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            text-align:center;
+        }
+      .sub-heading{
+        margin-bottom: 4rem;
+      }
+
+        /* ---  Projects Section (from InovacionCosmica.html) --- */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+
+        /* --- Skills Section (from InovacionCosmica.html) --- */
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+          margin-bottom:4rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+
+        /* --- Combined Explorador and Bofetada Styles  --- */
+
+        .explorer-bofetada-container {
+            display: flex;
+            flex-direction: column; /* Stack the sections */
+            align-items: center;      /* Center horizontally */
+            gap: 3rem;               /* Add space between sections */
+            margin-bottom: 4rem; /* Add margin at the bottom */
+            width: 100%; /* Take full width */
+        }
+
+        .explorer-container,
+        .experience-container {
+            background-color: rgba(255, 255, 255, 0.05); /* Lighter background */
+            backdrop-filter: blur(10px); /* Blur for glassmorphism */
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%; /* Control width, adjust as needed */
+            max-width: 500px; /* Limit max width */
+            transition: transform 0.3s ease; /* Smooth transition */
+        }
+          .explorer-container:hover, .experience-container:hover{
+            transform: scale(1.02);
+          }
+
+
+        #phraseDisplay { /* Combined styles for phrase displays */
+            font-size: 22px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: rgba(240, 248, 255, 0.2); /* Lighter AliceBlue */
+            border: 1px dashed rgba(255, 255, 255, 0.3); /* Lighter dashed border */
+            border-radius: 7px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+          color: var(--text);
+        }
+
+        #phraseDisplay:hover {
+             background-color: rgba(240, 248, 255, 0.4); /*  Slightly darker on hover */
+        }
+
+        #dynamicContent {
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--text);
+            min-height: 50px; /* Ensure some space even when empty */
+        }
+
+         #author {
+            font-style: italic;
+            color: #ddd; /*  Lighter author text */
+            margin-top: 15px;
+        }
+
+
+
+        /* --- Futuristic Styles (from Colores.html) --- */
+
+        .cyber-border {
+            position: relative;
+            border: 2px solid var(--primary);
+            clip-path: polygon(0 10%, 10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%);
+            background: linear-gradient(45deg, transparent 49.9%, var(--primary) 50%, var(--primary) 50%, transparent 50.1%);
+            background-size: 0.5rem 0.5rem;
+            animation: cyberScan 20s linear infinite;
+        }
+
+        @keyframes cyberScan {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000% 1000%; }
+        }
+
+        .hologram-card {  /* Apply to project cards and skill items */
+            background: rgba(127, 90, 240, 0.1);
+            border: 1px solid rgba(127, 90, 240, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .hologram-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, var(--secondary), transparent, var(--primary), transparent);
+            animation: hologramFlow 6s linear infinite;
+            mix-blend-mode: soft-light;
+        }
+
+        @keyframes hologramFlow {
+            0% { transform: rotate(0deg) translate(-25%, -25%); }
+            100% { transform: rotate(360deg) translate(-25%, -25%); }
+        }
+
+
+        .quantum-loader {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary), var(--secondary), var(--primary));
+            position: relative;
+            animation: quantumSpin 2s linear infinite;
+            box-shadow: 0 0 30px var(--primary);
+        }
+
+        .quantum-loader::after {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            background: var(--dark);
+            border-radius: 50%;
+        }
+
+        @keyframes quantumSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .neural-interface {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 254, 0.1);
+            padding: 1rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            z-index: 10; /*  Above particles, below content */
+        }
+
+
+
+        /* --- Animations (from InovacionCosmica.html) --- */
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
+        }
+
+
+        /* --- Responsive Design --- */
+
+        @media (max-width: 768px) {
+            .gradient-text {
+                font-size: 2.5rem;
+            }
+
+            .typewriter {
+                font-size: 1.5rem;
+            }
+            .explorer-bofetada-container{
+              width: 95%;
+            }
+            .explorer-container,
+            .experience-container{
+              width:100%;
+            }
+
+        }
+
+        /* ---  Navigation Styles --- */
+        .navbar {
+            position: fixed; /*  Fixed at the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(22, 22, 26, 0.8); /*  Slightly transparent background */
+            backdrop-filter: blur(5px);  /*  Add a blur */
+            padding: 1rem 2rem;
+            z-index: 100;  /*  Above everything else */
+            display: flex;
+            justify-content: space-between; /*  Space out items */
+            align-items: center; /*  Vertically center */
+        }
+
+        .navbar a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease; /* Smooth transition for hover */
+        }
+
+        .navbar a:hover {
+            color: var(--primary); /* Change color on hover */
+        }
+        .logo{
+          font-size: 1.5rem;
+          font-weight: 700;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- ---  Navigation Bar  --- -->
+    <nav class="navbar">
+        <div class="logo">Nexus Infinity</div>
+        <div>
+            <a href="#home">Inicio</a>
+            <a href="#projects">Proyectos</a>
+            <a href="#skills">Habilidades</a>
+            <a href="#explorer">Explorador</a>
+        </div>
+    </nav>
+
+    <!-- Quantum Field (Background) -->
+    <canvas id="quantumField"></canvas>
+
+    <!-- Neural Interface -->
+    <div class="neural-interface">
+        <div class="quantum-loader"></div>
+        <p class="typewriter" id="ai-output">Sistema Neural Conectado</p>
+    </div>
+
+
+    <!-- --- Main Content --- -->
+    <div class="container" id="home">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="gradient-text animate__animated animate__fadeInDown">Innovación Cósmica</h1>
+                <p class="typewriter sub-heading">Creando el futuro con código cuántico...</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="section-container" id="projects">
+        <!-- Projects Section -->
+        <section class="projects">
+            <h2>Proyectos Destacados</h2>
+            <div class="projects-grid">
+                <div class="project-card hologram-card animate__animated animate__fadeInUp">
+                    <h3>IA Galáctica</h3>
+                    <p>Sistema de aprendizaje profundo interplanetario</p>
+                </div>
+                <div class="project-card hologram-card animate__animated animate__fadeInUp animate__delay-1s">
+                    <h3>Realidad Cuántica</h3>
+                    <p>Motor de renderizado multidimensional</p>
+                </div>
+            </div>
+        </section>
+      </div>
+    <div class="section-container" id="skills">
+
+        <!-- Skills Section -->
+        <section class="skills">
+            <h2>Habilidades Tecnológicas</h2>
+            <div class="skills-container">
+                <div class="skill-item hologram-card">
+                    <i class="fas fa-atom fa-3x"></i>
+                    <h3>Computación Cuántica</h3>
+                </div>
+                <div class="skill-item hologram-card">
+                    <i class="fas fa-brain fa-3x"></i>
+                    <h3>Redes Neuronales</h3>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="section-container" id="explorer">
+        <!-- Combined Explorador and Bofetada Section -->
+        <section class="explorer-bofetada">
+             <h2>Exploración y Reflexión</h2>
+            <div class="explorer-bofetada-container">
+
+                <div class="explorer-container">
+                    <h3>Explorador de la Percepción de la Realidad</h3>
+                    <div id="phraseDisplay" onclick="nextPhrase()">
+                        Haz clic para comenzar a explorar...
+                    </div>
+                    <div id="dynamicContent">
+                        ...
+                    </div>
+                </div>
+
+                <div class="experience-container">
+                    <h3>Bofetada de Realidad Cruda</h3>
+                    <div id="phraseDisplayBofetada" onclick="nextPhraseBofetada()">
+                      Haz clic para recibir la primera bofetada...
+                    </div>
+                    <div id="author"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    <!-- ---  Scripts  --- -->
+    <script>
+
+    // ---  Quantum Field (from Colores.html) ---
+    class QuantumField {
+        constructor() {
+            this.canvas = document.getElementById('quantumField');
+            this.ctx = this.canvas.getContext('2d');
+            this.particles = [];
+            this.mouse = { x: 0, y: 0, radius: 100 };
+
+            this.init();
+            this.animate();
+        }
+
+        init() {
+            this.resize();
+            window.addEventListener('resize', this.resize.bind(this));
+            window.addEventListener('mousemove', (e) => {
+                this.mouse.x = e.clientX;
+                this.mouse.y = e.clientY;
+            });
+
+            for (let i = 0; i < 500; i++) {
+                this.particles.push({
+                    x: Math.random() * this.canvas.width,
+                    y: Math.random() * this.canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: Math.random() * 3 - 1.5,
+                    speedY: Math.random() * 3 - 1.5,
+                    color: `hsl(${Math.random() * 360}, 70%, 50%)`
+                });
+            }
+        }
+
+        resize() {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+        }
+
+        animate() {
+            this.ctx.fillStyle = 'rgba(22, 22, 26, 0.1)';
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+            this.particles.forEach(particle => {
+                let dx = this.mouse.x - particle.x;
+                let dy = this.mouse.y - particle.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                let force = (this.mouse.radius - distance) / this.mouse.radius;
+
+                if (distance < this.mouse.radius) {
+                    particle.x -= dx * force * 0.1;
+                    particle.y -= dy * force * 0.1;
+                }
+
+                particle.x += particle.speedX;
+                particle.y += particle.speedY;
+
+                if (particle.x > this.canvas.width) particle.x = 0;
+                if (particle.x < 0) particle.x = this.canvas.width;
+                if (particle.y > this.canvas.height) particle.y = 0;
+                if (particle.y < 0) particle.y = this.canvas.height;
+
+                this.ctx.beginPath();
+                this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                this.ctx.fillStyle = particle.color;
+                this.ctx.fill();
+            });
+
+            requestAnimationFrame(this.animate.bind(this));
+        }
+    }
+
+    new QuantumField();
+
+
+    // ---  Voice Interface (from Colores.html) ---
+    class VoiceInterface {
+        constructor() {
+            this.recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            this.recognition.lang = 'es-ES';
+            this.recognition.interimResults = false;
+            this.recognition.maxAlternatives = 1;
+
+            this.commands = {
+                'inicio': () => window.location.href = '#home', // Updated navigation
+                'proyectos': () => window.location.href = '#projects',
+                'habilidades': () => window.location.href="#skills",
+                'explorador': () => window.location.href="#explorer",
+                'futuro': () => this.activateHologram()
+            };
+
+            this.init();
+        }
+
+        init() {
+            this.recognition.addEventListener('result', (e) => {
+                const command = e.results[0][0].transcript.toLowerCase();
+                console.log("Comando de voz:", command); // Debugging
+                if (this.commands[command]) {
+                    this.commands[command]();
+                } else {
+                    console.log("Comando no reconocido:", command);
+                }
+            });
+
+            this.recognition.addEventListener('end', () => this.recognition.start());
+            this.recognition.start();
+        }
+
+        activateHologram() {
+            document.body.classList.add('hologram-mode');
+            setTimeout(() => {
+                document.body.classList.remove('hologram-mode');
+            }, 5000);
+        }
+    }
+
+    new VoiceInterface();
+
+    // --- Hologram Card Effect (from Colores.html) ---
+    document.addEventListener('mousemove', (e) => {
+        const elements = document.querySelectorAll('.hologram-card');
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            el.style.transform = `
+                perspective(1000px)
+                rotateX(${(y - rect.height/2) / 10}deg)
+                rotateY(${-(x - rect.width/2) / 10}deg)
+            `;
+        });
+    });
+
+
+    // ---  Explorador Script  ---
+    const phrases = [
+    "La realidad no es fija.",
+    "Tu percepción es limitada.",
+    "Expande tu conciencia.",
+    "Rompe el marco de referencia.",
+    "Cuestiona tus suposiciones.",
+    "Lo que ves no es todo lo que hay.",
+    "La verdad reside en la apertura.",
+    "Más allá de la dualidad, la unidad.",
+    "El silencio habla más fuerte que las palabras.",
+    "Observa sin juzgar, simplemente observa.",
+    "Desaprende lo que crees saber.",
+    "La realidad se revela en la quietud.",
+    "Permite que la incertidumbre te guíe.",
+    "La mente limita, la conciencia expande.",
+    "Explora los límites de tu percepción."
+    ];
+
+    let currentPhraseIndex = -1;
+
+    function nextPhrase() {
+        currentPhraseIndex++;
+        if (currentPhraseIndex >= phrases.length) {
+            currentPhraseIndex = 0; // Loop
+        }
+        document.getElementById('phraseDisplay').innerText = phrases[currentPhraseIndex];
+        document.getElementById('dynamicContent').innerText = `Frase ${currentPhraseIndex + 1} de ${phrases.length}. Haz clic para explorar otra perspectiva.`;
+    }
+
+
+    // --- Bofetada Script ---
+    const bofetadaPhrases = [
+        { text: "Este momento es todo lo que tienes.", author: null },
+        { text: "La belleza más intensa nace del dolor más profundo.", author: null },
+        { text: "Todo lo que amas, lo perderás.", author: null },
+        { text: "El tiempo es un río implacable.", author: null },
+        { text: "Tu corazón se romperá. Una y otra vez.", author: null },
+        { text: "Nadie te salvará. Excepto tú mismo.", author: null },
+        { text: "La vida es inherentemente sufrimiento.", author: null },
+        { text: "Pero también, inherentemente hermosa.", author: null },
+        { text: "En la impermanencia, la danza de la vida.", author: null },
+        { text: "En la fragilidad, la fuerza del amor.", author: null },
+        { text: "En la oscuridad, el brillo de la conciencia.", author: null },
+        { text: "Abraza la crudeza. Abraza el amor.", author: null },
+        { text: "La realidad te golpea. Y te libera.", author: null },
+        { text: "En este instante crudo, el amor puro.", author: null },
+        { text: "Despierta.", author: "— La Realidad" }
+    ];
+    let currentBofetadaIndex = -1;
+
+    function nextPhraseBofetada() {
+      currentBofetadaIndex++;
+      const display = document.getElementById('phraseDisplayBofetada');
+      const author = document.getElementById('author');
+
+      if (currentBofetadaIndex < bofetadaPhrases.length) {
+        display.innerText = bofetadaPhrases[currentBofetadaIndex].text;
+        author.innerText = bofetadaPhrases[currentBofetadaIndex].author || "";
+      } else {
+        display.innerText = "Has recibido la bofetada completa. ¿Qué sientes ahora?";
+        author.innerText = "";
+        display.onclick = null; // Disable further clicks
+      }
+    }
+
+
+    // --- Initial setup for both phrase displays ---
+    document.getElementById('phraseDisplay').innerText = "Haz clic para comenzar a explorar...";
+    document.getElementById('dynamicContent').innerText = "...";
+    document.getElementById('phraseDisplayBofetada').innerText = "Haz clic para recibir la primera bofetada...";
+
+    </script>
+</body>
+</html>
